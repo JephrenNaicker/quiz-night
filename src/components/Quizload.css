@@ -1,0 +1,58 @@
+/* QuizLoad.css */
+
+/* Style for the entire quiz card */
+.card {
+  background-color: #f7f7f7;
+  padding: 30px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for individual question cards */
+.question-card {
+  background-color: #fff;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for question text */
+.question {
+  margin-bottom: 15px;
+}
+
+/* Grid style for answers */
+.answer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-gap: 10px;
+}
+
+/* Style for answer labels */
+.answer-label {
+  display: flex;
+  align-items: center;
+}
+
+/* Style for answer text */
+.answer-text {
+  margin-left: 10px;
+}
+
+/* Style for the submit button */
+button[type="submit"] {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 16px;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
