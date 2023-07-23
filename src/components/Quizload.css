@@ -3,9 +3,13 @@
 /* Style for the entire quiz card */
 .card {
   background-color: #f7f7f7;
-  padding: 30px;
+  padding: 20px;
   margin-bottom: 20px;
-  border-radius: 10px;
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-top: 20px;
+
+  border-radius: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -56,3 +60,4 @@ button[type="submit"] {
 button[type="submit"]:hover {
   background-color: #0056b3;
 }
+

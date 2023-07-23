@@ -7,7 +7,7 @@ function App() {
     <div className="App">
 
     <QuizLoad/>
-    
+    {/* {testModel()} */}
     </div>
   );
 }

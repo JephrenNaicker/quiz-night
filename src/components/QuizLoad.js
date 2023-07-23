@@ -1,34 +1,36 @@
 import React, { useState } from 'react';
-
 import quizdata from './dataContext/quiz-data.json'
 import './Quizload.css';  // Import the CSS file for custom styling
 import { shoot } from './confetti';
+import axios from 'axios';
 
 const movieQuizArray = quizdata[0].movieQuiz;
-//const QuestionArray = movieQuizArray.questions.question;
-//console.log(QuestionArray);
+
 console.log(movieQuizArray);
 console.log(movieQuizArray[0].questions);
 console.log(movieQuizArray[0].questions[0].answers);
 
-
 const QuizLoad = () => {
   const [selectedAnswers, setSelectedAnswers] = useState({}); // State to track selected answers
-
+  const [userName, setUserName] = useState();
   const handleSubmit = (event) => {
     event.preventDefault(); // Prevent form submission
     const correctAnswersCount = calculateCorrectAnswersCount();
+  
     if(correctAnswersCount===getTotalQuestionsCount())
     {
 
       setTimeout(shoot, 0);
       setTimeout(shoot, 100);
-      alert(`You got ${correctAnswersCount} out of ${getTotalQuestionsCount()} correct!`);
+      setTimeout(shoot, 200);
+      setTimeout(shoot, 300);
+      alert(`${userName} You got ${correctAnswersCount} out of ${getTotalQuestionsCount()} correct!`);
       
     }
     else{
-    alert(`You got ${correctAnswersCount} out of ${getTotalQuestionsCount()} correct!`);
+    alert(`${userName} You got ${correctAnswersCount} out of ${getTotalQuestionsCount()} correct! try again`);
     }
+    saveUserScore(userName,correctAnswersCount);
   };
 
   const handleAnswerChange = (event, quizIndex, questionIndex) => {
@@ -59,6 +61,16 @@ const QuizLoad = () => {
       count += quiz.questions.length;
     });
     return count;
+  };
+
+  const saveUserScore = (userName, correctAnswersCount) => {
+    axios.post('http://localhost:5000/api/save-user-score', { userName, correctAnswersCount })
+    .then(response => {
+      console.log('User score saved successfully.');
+    })
+    .catch(error => {
+      console.error('Error saving user score:', error);
+    });
   };
 
   return (
@@ -94,7 +106,13 @@ const QuizLoad = () => {
             ))}
           </div>
         ))}
-        <button type="submit">Submit</button>
+         <div className="input-group mb-3" >
+         <input type='text' className="form-control" placeholder="Player Name" required onChange={(e)=>setUserName(e.target.value)}/>
+         <div  className="input-group-append">
+          <button type="submit" className="btn btn-outline-secondary">Submit</button></div>
+         </div>
+         
+         
       </form>
     </div>
   );
